@@ -49,7 +49,7 @@ function writeDisk(){
 # for CC65 programs
 #  ${acCmd} -as ${diskPath} ${exeFile} BIN ${loadAddr} < ${exePath} 
 # for CA65 asm program
-  ${acCmd} -p ${diskPath} ${exeFile} BIN ${loadAddr} < ${exePath} 
+  ${acCmd} -p ${diskPath} ${exeFile} bin ${loadAddr} < ${exePath} 
 }
 
 function disk(){
