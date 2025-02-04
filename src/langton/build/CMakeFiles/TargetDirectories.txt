@@ -1,3 +1,0 @@
-/home/pi/github/langtonsant/src/langton/build/CMakeFiles/rebuild_cache.dir
-/home/pi/github/langtonsant/src/langton/build/CMakeFiles/a2pi_langton.dir
-/home/pi/github/langtonsant/src/langton/build/CMakeFiles/edit_cache.dir
