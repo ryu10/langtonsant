@@ -1,0 +1,3 @@
+/home/pi/github/a2piblink/src/plot1/build/CMakeFiles/rebuild_cache.dir
+/home/pi/github/a2piblink/src/plot1/build/CMakeFiles/a2pi_plot1.dir
+/home/pi/github/a2piblink/src/plot1/build/CMakeFiles/edit_cache.dir
