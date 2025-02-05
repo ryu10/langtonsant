@@ -88,7 +88,7 @@ UPDANTS:
         lda #MAX_ANTS
         sta CNTR
         lda #<ANTS
-        sta FG    ; zpg FG = ANT Base address
+        sta FG    ; zpg [FG+1, FG] = ANT0 Base address
         lda #>ANTS
         sta FG+1
 UA0:    
@@ -192,7 +192,7 @@ UA_ORI: ; get current location
         ldy #ay_off    ; load ay -> a
         lda (FG),y
         ldy BWORK      ; >ax -> y
-        jsr COOR2OFF   ; offset -> BC, bitloc -> Acc
+        jsr COOR2OFF   ; offset -> [BC+1, BC], bitloc -> Acc
         ; get current bit
         tax            ; generate mask
         lda #1
@@ -284,7 +284,7 @@ US0:    ldy #updcol_off ; load col -> COLOR
         dec CNTR
         bne US0
         rts
-; plot at (yx, acc) in BITMAP and hgr vram
+; plot at ([y, x], Acc) in BITMAP and hgr vram
 PLOTMAP:
         stx DE      ; save x, y, a
         sty DE+1
@@ -326,14 +326,14 @@ PLOTMAP:
         jsr HPLOT
         rts
 ; ([y, x] , a) -> offset, 
-; offset >>3 -> BC, offset & 0x03 -> Acc
+; offset >>3 -> BC, offset & 0x07 -> Acc
 COOR2OFF:
-        pha     ; set a->BC
+        pha     ; set Acc->BC
         lda #0
         sta BC+1
         pla
         sta BC
-        ; A * 280 -> BC
+        ; BC * 280 -> [BC+1, BC]
         ; 280 = $0118 = 0000 0001 0001 1000
         clc
         jsr ROLBC
@@ -368,7 +368,7 @@ LSRBC:
         lsr BC+1
         ror BC
         rts
-ADDABC:  ; [BC+1, BC] + Ac -> [BC+1, BC] 
+ADDABC:  ; [BC+1, BC] + Acc -> [BC+1, BC] 
         pha
         clc
         adc BC
