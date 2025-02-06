@@ -4,6 +4,7 @@ project(a2pi_langton_project ASM)
 
 set(source_files
     src/langant.s
+    src/initant.inc
 )
 
 set(linker_config_file "${CMAKE_SOURCE_DIR}/src/apple2bin.cfg")

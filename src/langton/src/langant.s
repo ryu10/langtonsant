@@ -13,9 +13,9 @@ PRINTCR = $FD8E
 WAIT = $fca8
 ; constants
 BITMAP_SIZE = $1b00
-MAX_ANTS = 3
-X_MAX = 280
-Y_MAX = 160
+; MAX_ANTS = 3
+; X_MAX = 280
+; Y_MAX = 160
 ;
 ; zpg locs
 ; BC = $1D ; zpg loc $1D, $1E
@@ -44,39 +44,7 @@ ENTRY:
         ldx #3    ; color = white
         jsr HCOLOR
 ; init
-        ; ant0 at (100, 50), ori=2 (dn)
-        lda #100 
-        sta ANTS +ax_off
-        lda #0
-        sta ANTS +ax_off+1
-        lda #50
-        sta ANTS +ay_off
-        lda #2
-        sta ANTS +aori_off
-        lda #0 ; black
-        sta ANTS + updcol_off
-        ; ant1 at (50, 100), ori=1 (right)
-        lda #50   
-        sta ANTS+.sizeof(Ant) +ax_off
-        lda #0
-        sta ANTS+.sizeof(Ant) +ax_off+1
-        lda #100
-        sta ANTS+.sizeof(Ant) +ay_off
-        lda #1
-        sta ANTS+.sizeof(Ant) +aori_off
-        lda #0 ; black
-        sta ANTS+.sizeof(Ant) +updcol_off
-        ; ant2 at (150, 100), ori=3 (left)
-        lda #150   
-        sta ANTS+.sizeof(Ant)*2 +ax_off
-        lda #0
-        sta ANTS+.sizeof(Ant)*2 +ax_off+1
-        lda #100
-        sta ANTS+.sizeof(Ant)*2 +ay_off
-        lda #3
-        sta ANTS+.sizeof(Ant)*2 +aori_off
-        lda #0 ; black
-        sta ANTS+.sizeof(Ant)*2 +updcol_off
+        jsr INITANTS
 ;
 MAINLOOP:
         jsr UPDANTS
@@ -378,6 +346,8 @@ ADDABC:  ; [BC+1, BC] + Acc -> [BC+1, BC]
         sta BC+1
         pla
         rts
+; initants
+        .include "initant.inc"
 ;
 .segment "DATA"
 BITMAP: 
