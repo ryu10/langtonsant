@@ -50,6 +50,8 @@ INITANTS:  ; initialize the statuses of ants
 ; #2 two ants pointing each other
 ; *******************************
 ; MAX_ANTS = 2
+; X_MAX = 280
+; Y_MAX = 160
 ; ;
 ; INITANTS:  ; initialize the statuses of ants
 ;         ; ant0 at (88, 25), ori=1 (right)
